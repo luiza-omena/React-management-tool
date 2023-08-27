@@ -55,7 +55,7 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
         
         rounded-xl 
         border-2
-        border-rose-100
+        border-darkGreen
         cursor-grab relative
   "
       ></div>
@@ -80,7 +80,7 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
       rounded-xl 
       hover:ring-2 
       hover:ring-inset 
-      hover:ring-rose-100 
+      hover:ring-darkGreen 
       cursor-grab relative task
       "
       >
@@ -127,7 +127,7 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
   rounded-xl 
   hover:ring-2 
   hover:ring-inset 
-  hover:ring-rose-100 
+  hover:ring-darkGreen 
   cursor-grab relative task
   "
       onMouseEnter={() => {

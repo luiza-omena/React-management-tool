@@ -2,7 +2,7 @@ import PlusIcon from "../icons/PlusIcon";
 import { useState } from "react";
 import { Column, Id, Task } from "../types";
 import ColumnBox from "./ColumnBox";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logoAvant.svg";
 import {
   DndContext,
   DragOverEvent,
@@ -31,10 +31,10 @@ function Board() {
 
   return (
     <>
-      <header className="bg-[#79B4B7] p-[40px]">
-        <div className="flex items-center gap-2">
+      <header className="bg-darkGreen p-[40px]">
+        <div className="flex items-center gap-7">
           <img src={logo} alt="lu icon" className="w-[5%]" />
-          <h1 className="text-black font-bold">AvantManager</h1>
+          <h1 className="text-lightWhite font-bold text-2xl">AvantManager</h1>
         </div>
       </header>
       <div className="m-[40px]">
@@ -66,11 +66,11 @@ function Board() {
         min-w-[350px]
         cursor-pointer
         rounded-lg
-        bg-navy
+        bg-blueWhite
         border-2
         border-darkBlue
         p-4
-        ring-rose-100
+        ring-darkGreen
         hover:ring-2
         flex
         gap-2

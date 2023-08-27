@@ -25,14 +25,7 @@ function ColumnBox(props: Props) {
     return tasks.map((task) => task.id);
   }, [tasks]);
 
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
+  const { setNodeRef, transform, transition, isDragging } = useSortable({
     id: column.id,
     data: {
       type: "Column",
@@ -72,7 +65,7 @@ function ColumnBox(props: Props) {
       ref={setNodeRef}
       style={style}
       className="
-    bg-grey
+    bg-blueWhite
     w-[350px]
     h-[500px]
     max-h-[500px]
@@ -87,13 +80,13 @@ function ColumnBox(props: Props) {
         }}
         className="
     
-    bg-navy
+    bg-node
     text-md
     h-[60px]
     rounded-md
     p-3
     font-bold
-    border-grey
+    border-blueWhite
     border-2
     flex
     items-center
@@ -106,7 +99,7 @@ function ColumnBox(props: Props) {
         flex
         justify-center
         items-center
-        bg-grey
+        bg-darkGreen
         text-darkBlue
         px-2
         py-1
@@ -119,7 +112,7 @@ function ColumnBox(props: Props) {
           {!editMode && column.title}
           {editMode && (
             <input
-              className="bg-grey focus:border-rose-100 border rounded outline-none px-2 text-darkBlue"
+              className="bg-blueWhite focus:border-darkGreen border rounded outline-none px-2"
               value={column.title}
               onChange={(e) => editColumn(column.id, e.target.value)}
               autoFocus
@@ -138,7 +131,7 @@ function ColumnBox(props: Props) {
         </div>
         <button
           className="
-                stroke-grey
+                stroke-blueWhite
                 hover:stroke-white
                 hover:bg-darkBlue
                 rounded
@@ -162,18 +155,18 @@ function ColumnBox(props: Props) {
         </SortableContext>
       </div>
       <button
-        className="bg-navy
+        className="bg-none
         text-md
+      
         h-[60px]
         rounded-md
         p-3
         font-bold
-        border-grey
+        border-blueWhite
         border-2
         flex
         items-center
         justify-between
-        hover:text-rose-100
         hover:bg-darkBlue
         "
         onClick={() => {

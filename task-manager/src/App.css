@@ -6,6 +6,6 @@
 html,
 body,
 #layout {
-  @apply bg-blue text-white box-border;
+  @apply bg-blue text-black box-border;
   font-family: "Poppins", sans-serif;
 }
