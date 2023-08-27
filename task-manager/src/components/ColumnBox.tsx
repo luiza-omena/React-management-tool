@@ -1,14 +1,19 @@
 import { useState } from "react";
 import EditIcon from "../icons/EditIcon";
-import { Column, Id } from "../types";
+import { Column, Id, Task } from "../types";
+import PlusIcon from "../icons/PlusIcon";
+import TaskBox from "./TaskBox";
 
 interface Props {
   column: Column;
   editColumn: (id: Id, title: string) => void;
+
+  createTask: (columnId: Id) => void;
+  tasks: Task[];
 }
 
 function ColumnBox(props: Props) {
-  const { column, editColumn } = props;
+  const { column, editColumn, createTask, tasks } = props;
 
   const [editMode, setEditMode] = useState(false);
 
@@ -34,7 +39,6 @@ function ColumnBox(props: Props) {
     text-grey
     text-md
     h-[60px]
-    cursor-grab
     rounded-md
     p-3
     font-bold
@@ -85,7 +89,7 @@ function ColumnBox(props: Props) {
           className="
                 stroke-grey
                 hover:stroke-white
-                hover:bg-columnBackgroundColor
+                hover:bg-darkBlue
                 rounded
                 px-1
                 py-2
@@ -94,8 +98,34 @@ function ColumnBox(props: Props) {
           <EditIcon />
         </button>
       </div>
-      <div className="flex flex-grow">Content</div>
-      <div>Footer</div>
+      <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
+        {tasks.map((task) => (
+          <TaskBox key={task.id} task={task} />
+        ))}
+      </div>
+      <button
+        className="bg-navy
+        text-grey
+        text-md
+        h-[60px]
+        rounded-md
+        p-3
+        font-bold
+        border-grey
+        border-2
+        flex
+        items-center
+        justify-between
+        hover:text-rose-100
+        hover:bg-darkBlue
+        "
+        onClick={() => {
+          createTask(column.id);
+        }}
+      >
+        <PlusIcon />
+        Add task
+      </button>
     </div>
   );
 }

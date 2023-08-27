@@ -1,10 +1,11 @@
 import PlusIcon from "../icons/PlusIcon";
 import { useState } from "react";
-import { Column, Id } from "../types";
+import { Column, Id, Task } from "../types";
 import ColumnBox from "./ColumnBox";
 
 function Board() {
   const [columns, setColumns] = useState<Column[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   console.log(columns);
   return (
     <div
@@ -22,7 +23,12 @@ function Board() {
       <div className="m-auto flex gap-4">
         <div className="flex gap-4">
           {columns.map((col) => (
-            <ColumnBox column={col} editColumn={editColumn} />
+            <ColumnBox
+              column={col}
+              editColumn={editColumn}
+              createTask={createTask}
+              tasks={tasks.filter((task) => task.columnId === col.id)}
+            />
           ))}
         </div>
         <button
@@ -53,6 +59,15 @@ function Board() {
     </div>
   );
 
+  function createTask(columnId: Id) {
+    const newTask: Task = {
+      id: generateId(),
+      columnId,
+      content: `Task ${tasks.length + 1}`,
+    };
+
+    setTasks([...tasks, newTask]);
+  }
   function createColumn() {
     const addColumn: Column = {
       id: generateId(),
@@ -63,7 +78,9 @@ function Board() {
   }
   function editColumn(id: Id, title: string) {
     const newTitle = columns.map((col) => {
-      if (col.id !== id) return col;
+      if (col.id !== id) {
+        return col;
+      }
       return { ...col, title };
     });
 
