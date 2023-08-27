@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#layout {
+  @apply bg-blue text-white box-border;
+}
