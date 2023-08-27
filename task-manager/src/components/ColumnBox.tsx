@@ -16,9 +16,14 @@ interface Props {
   tasks: Task[];
 }
 
-function ColumnBox(props: Props) {
-  const { column, editColumn, createTask, deleteTask, editTask, tasks } = props;
-  console.log(tasks.length);
+function ColumnBox({
+  column,
+  editColumn,
+  createTask,
+  deleteTask,
+  editTask,
+  tasks,
+}: Props) {
   const [editMode, setEditMode] = useState(false);
 
   const tasksIds = useMemo(() => {
@@ -48,8 +53,7 @@ function ColumnBox(props: Props) {
       bg-columnBackgroundColor
       opacity-40
       border-2
-      border-pink-500
-      w-[350px]
+      w-[18.2vw]
       h-[500px]
       max-h-[500px]
       rounded-md
@@ -66,7 +70,7 @@ function ColumnBox(props: Props) {
       style={style}
       className="
     bg-blueWhite
-    w-[350px]
+    w-[18.2vw]
     h-[500px]
     max-h-[500px]
     rounded-md
@@ -121,6 +125,7 @@ function ColumnBox(props: Props) {
               }}
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
+                  console.log(e);
                   setEditMode(false);
                 } else {
                   return;

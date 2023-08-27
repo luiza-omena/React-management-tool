@@ -43,8 +43,8 @@ function Board() {
           onDragStart={onDragStart}
           onDragOver={onDragOver}
         >
-          <div className="m-auto flex gap-4">
-            <div className="flex gap-4">
+          <div className="m-auto flex gap-4 flex-col md:flex-row items-center md:items-start">
+            <div className="flex gap-4 flex-col md:flex-row items-center">
               {columns.map((col) => (
                 <ColumnBox
                   column={col}
@@ -56,29 +56,33 @@ function Board() {
                 />
               ))}
             </div>
-            <button
-              onClick={() => {
-                createColumn();
-              }}
-              className="
-        h-[60px]
-        w-[300px]
-        min-w-[350px]
-        cursor-pointer
-        rounded-lg
-        bg-blueWhite
-        border-2
-        border-darkBlue
-        p-4
-        ring-darkGreen
-        hover:ring-2
-        flex
-        gap-2
-        "
-            >
-              <PlusIcon />
-              Add Column
-            </button>
+
+            {columns.length < 5 && (
+              <button
+                onClick={() => {
+                  if (columns.length < 5) {
+                    createColumn();
+                  }
+                }}
+                className="
+                    h-[60px]
+                    w-[18.2vw]
+                    cursor-pointer
+                    rounded-lg
+                    bg-blueWhite
+                    border-2
+                    border-darkBlue
+                    p-4
+                    ring-darkGreen
+                    hover:ring-2
+                    flex
+                    gap-2
+                    "
+              >
+                <PlusIcon />
+                Add Column
+              </button>
+            )}
           </div>
 
           {createPortal(
