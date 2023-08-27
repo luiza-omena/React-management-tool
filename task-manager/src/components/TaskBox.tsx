@@ -46,13 +46,13 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
         style={style}
         className="
         opacity-40
-        bg-navy
+        bg-white
         p-2.5 h-[100px] 
         min-h-[100px] 
         items-center 
         flex 
         text-left 
-        text-grey
+        
         rounded-xl 
         border-2
         border-rose-100
@@ -70,13 +70,13 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
         {...attributes}
         {...listeners}
         className="
-      bg-navy
+        bg-white
       p-2.5 h-[100px] 
       min-h-[100px] 
       items-center 
       flex 
       text-left 
-      text-grey
+      
       rounded-xl 
       hover:ring-2 
       hover:ring-inset 
@@ -92,7 +92,7 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
         border-none 
         rounded 
         bg-transparent 
-        text-grey 
+         
         focus:outline-none
         "
           value={task.content}
@@ -117,13 +117,13 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
       {...listeners}
       onClick={toggleEditMode}
       className="
-  bg-navy
+  bg-white
   p-2.5 h-[100px] 
   min-h-[100px] 
   items-center 
   flex 
   text-left 
-  text-grey
+  
   rounded-xl 
   hover:ring-2 
   hover:ring-inset 
@@ -147,7 +147,7 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
       absolute 
       right-4 
       top-1/2 -translate-y-1/2 
-      bg-navy
+      bg-white
       p-2 rounded 
       opacity-50 
       hover:opacity-100

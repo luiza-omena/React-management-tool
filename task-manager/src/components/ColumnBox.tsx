@@ -3,7 +3,8 @@ import EditIcon from "../icons/EditIcon";
 import { Column, Id, Task } from "../types";
 import PlusIcon from "../icons/PlusIcon";
 import TaskBox from "./TaskBox";
-import { SortableContext } from "@dnd-kit/sortable";
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface Props {
   column: Column;
@@ -17,14 +18,59 @@ interface Props {
 
 function ColumnBox(props: Props) {
   const { column, editColumn, createTask, deleteTask, editTask, tasks } = props;
-
+  console.log(tasks.length);
   const [editMode, setEditMode] = useState(false);
 
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
   }, [tasks]);
+
+  const {
+    setNodeRef,
+    attributes,
+    listeners,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: column.id,
+    data: {
+      type: "Column",
+      column,
+    },
+    disabled: editMode,
+  });
+
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
+
+  if (isDragging) {
+    return (
+      <div
+        ref={setNodeRef}
+        style={style}
+        className="
+      bg-columnBackgroundColor
+      opacity-40
+      border-2
+      border-pink-500
+      w-[350px]
+      h-[500px]
+      max-h-[500px]
+      rounded-md
+      flex
+      flex-col
+      "
+      ></div>
+    );
+  }
+
   return (
     <div
+      ref={setNodeRef}
+      style={style}
       className="
     bg-grey
     w-[350px]
@@ -42,7 +88,6 @@ function ColumnBox(props: Props) {
         className="
     
     bg-navy
-    text-grey
     text-md
     h-[60px]
     rounded-md
@@ -69,7 +114,7 @@ function ColumnBox(props: Props) {
         rounded-full
         "
           >
-            0
+            {tasks.length}
           </div>
           {!editMode && column.title}
           {editMode && (
@@ -118,7 +163,6 @@ function ColumnBox(props: Props) {
       </div>
       <button
         className="bg-navy
-        text-grey
         text-md
         h-[60px]
         rounded-md

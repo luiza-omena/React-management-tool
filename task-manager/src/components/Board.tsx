@@ -2,9 +2,9 @@ import PlusIcon from "../icons/PlusIcon";
 import { useState } from "react";
 import { Column, Id, Task } from "../types";
 import ColumnBox from "./ColumnBox";
+import logo from "../assets/logo.svg";
 import {
   DndContext,
-  DragEndEvent,
   DragOverEvent,
   DragOverlay,
   DragStartEvent,
@@ -28,48 +28,43 @@ function Board() {
       },
     })
   );
-  console.log(columns);
+
   return (
-    <div
-      className="
-    m-auto
-    flex
-    min-h-screen
-    w-full
-    items-center
-    overflow-x-auto
-    overflow-y-hidden
-    px-[40px]
-    "
-    >
-      <DndContext
-        sensors={sensors}
-        onDragStart={onDragStart}
-        onDragOver={onDragOver}
-      >
-        <div className="m-auto flex gap-4">
-          <div className="flex gap-4">
-            {columns.map((col) => (
-              <ColumnBox
-                column={col}
-                editColumn={editColumn}
-                createTask={createTask}
-                deleteTask={deleteTask}
-                editTask={editTask}
-                tasks={tasks.filter((task) => task.columnId === col.id)}
-              />
-            ))}
-          </div>
-          <button
-            onClick={() => {
-              createColumn();
-            }}
-            className="
+    <>
+      <header className="bg-[#79B4B7] p-[40px]">
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="lu icon" className="w-[5%]" />
+          <h1 className="text-black font-bold">AvantManager</h1>
+        </div>
+      </header>
+      <div className="m-[40px]">
+        <DndContext
+          sensors={sensors}
+          onDragStart={onDragStart}
+          onDragOver={onDragOver}
+        >
+          <div className="m-auto flex gap-4">
+            <div className="flex gap-4">
+              {columns.map((col) => (
+                <ColumnBox
+                  column={col}
+                  editColumn={editColumn}
+                  createTask={createTask}
+                  deleteTask={deleteTask}
+                  editTask={editTask}
+                  tasks={tasks.filter((task) => task.columnId === col.id)}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => {
+                createColumn();
+              }}
+              className="
         h-[60px]
         w-[300px]
         min-w-[350px]
         cursor-pointer
-        text-grey
         rounded-lg
         bg-navy
         border-2
@@ -80,26 +75,27 @@ function Board() {
         flex
         gap-2
         "
-          >
-            <PlusIcon />
-            Add Column
-          </button>
-        </div>
+            >
+              <PlusIcon />
+              Add Column
+            </button>
+          </div>
 
-        {createPortal(
-          <DragOverlay>
-            {activeTask && (
-              <TaskBox
-                task={activeTask}
-                deleteTask={deleteTask}
-                editTask={editTask}
-              />
-            )}
-          </DragOverlay>,
-          document.body
-        )}
-      </DndContext>
-    </div>
+          {createPortal(
+            <DragOverlay>
+              {activeTask && (
+                <TaskBox
+                  task={activeTask}
+                  deleteTask={deleteTask}
+                  editTask={editTask}
+                />
+              )}
+            </DragOverlay>,
+            document.body
+          )}
+        </DndContext>
+      </div>
+    </>
   );
 
   function createTask(columnId: Id) {
