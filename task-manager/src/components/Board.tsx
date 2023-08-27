@@ -27,6 +27,7 @@ function Board() {
               column={col}
               editColumn={editColumn}
               createTask={createTask}
+              deleteTask={deleteTask}
               tasks={tasks.filter((task) => task.columnId === col.id)}
             />
           ))}
@@ -67,6 +68,11 @@ function Board() {
     };
 
     setTasks([...tasks, newTask]);
+  }
+
+  function deleteTask(id: Id) {
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
   }
   function createColumn() {
     const addColumn: Column = {

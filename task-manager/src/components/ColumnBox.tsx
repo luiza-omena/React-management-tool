@@ -9,11 +9,12 @@ interface Props {
   editColumn: (id: Id, title: string) => void;
 
   createTask: (columnId: Id) => void;
+  deleteTask: (id: Id) => void;
   tasks: Task[];
 }
 
 function ColumnBox(props: Props) {
-  const { column, editColumn, createTask, tasks } = props;
+  const { column, editColumn, createTask, deleteTask, tasks } = props;
 
   const [editMode, setEditMode] = useState(false);
 
@@ -100,7 +101,7 @@ function ColumnBox(props: Props) {
       </div>
       <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
         {tasks.map((task) => (
-          <TaskBox key={task.id} task={task} />
+          <TaskBox key={task.id} task={task} deleteTask={deleteTask} />
         ))}
       </div>
       <button
