@@ -1,6 +1,6 @@
 import PlusIcon from "../icons/PlusIcon";
 import { useState } from "react";
-import { Column } from "../types";
+import { Column, Id } from "../types";
 import ColumnBox from "./ColumnBox";
 
 function Board() {
@@ -22,7 +22,7 @@ function Board() {
       <div className="m-auto flex gap-4">
         <div className="flex gap-4">
           {columns.map((col) => (
-            <ColumnBox column={col} />
+            <ColumnBox column={col} editColumn={editColumn} />
           ))}
         </div>
         <button
@@ -59,6 +59,14 @@ function Board() {
     };
 
     setColumns([...columns, addColumn]);
+  }
+  function editColumn(id: Id, title: string) {
+    const newTitle = columns.map((col) => {
+      if (col.id !== id) return col;
+      return { ...col, title };
+    });
+
+    setColumns(newTitle);
   }
 }
 

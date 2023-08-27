@@ -1,12 +1,17 @@
+import { useState } from "react";
 import DeleteIcon from "../icons/DeleteIcon";
 import { Column, Id } from "../types";
 
 interface Props {
   column: Column;
+  editColumn: (id: Id, title: string) => void;
 }
 
 function ColumnBox(props: Props) {
-  const { column } = props;
+  const { column, editColumn } = props;
+
+  const [editMode, setEditMode] = useState(false);
+
   return (
     <div
       className="
@@ -20,6 +25,9 @@ function ColumnBox(props: Props) {
   "
     >
       <div
+        onClick={() => {
+          setEditMode(true);
+        }}
         className="
     
     bg-navy
@@ -53,7 +61,25 @@ function ColumnBox(props: Props) {
           >
             0
           </div>
-          {column.title}
+          {!editMode && column.title}
+          {editMode && (
+            <input
+              className="bg-grey focus:border-rose-100 border rounded outline-none px-2 text-darkBlue"
+              value={column.title}
+              onChange={(e) => editColumn(column.id, e.target.value)}
+              autoFocus
+              onBlur={() => {
+                setEditMode(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") {
+                  setEditMode(false);
+                } else {
+                  return;
+                }
+              }}
+            />
+          )}
         </div>
         <button
           className="
