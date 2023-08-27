@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import EditIcon from "../icons/EditIcon";
 import { Column, Id, Task } from "../types";
 import PlusIcon from "../icons/PlusIcon";
 import TaskBox from "./TaskBox";
+import { SortableContext } from "@dnd-kit/sortable";
 
 interface Props {
   column: Column;
@@ -10,14 +11,18 @@ interface Props {
 
   createTask: (columnId: Id) => void;
   deleteTask: (id: Id) => void;
+  editTask: (id: Id, content: string) => void;
   tasks: Task[];
 }
 
 function ColumnBox(props: Props) {
-  const { column, editColumn, createTask, deleteTask, tasks } = props;
+  const { column, editColumn, createTask, deleteTask, editTask, tasks } = props;
 
   const [editMode, setEditMode] = useState(false);
 
+  const tasksIds = useMemo(() => {
+    return tasks.map((task) => task.id);
+  }, [tasks]);
   return (
     <div
       className="
@@ -100,9 +105,16 @@ function ColumnBox(props: Props) {
         </button>
       </div>
       <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
-        {tasks.map((task) => (
-          <TaskBox key={task.id} task={task} deleteTask={deleteTask} />
-        ))}
+        <SortableContext items={tasksIds}>
+          {tasks.map((task) => (
+            <TaskBox
+              key={task.id}
+              task={task}
+              deleteTask={deleteTask}
+              editTask={editTask}
+            />
+          ))}
+        </SortableContext>
       </div>
       <button
         className="bg-navy
