@@ -34,6 +34,7 @@ function Board() {
         w-[300px]
         min-w-[350px]
         cursor-pointer
+        text-grey
         rounded-lg
         bg-navy
         border-2

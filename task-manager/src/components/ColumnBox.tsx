@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DeleteIcon from "../icons/DeleteIcon";
+import EditIcon from "../icons/EditIcon";
 import { Column, Id } from "../types";
 
 interface Props {
@@ -83,7 +83,7 @@ function ColumnBox(props: Props) {
         </div>
         <button
           className="
-                stroke-gray-500
+                stroke-grey
                 hover:stroke-white
                 hover:bg-columnBackgroundColor
                 rounded
@@ -91,7 +91,7 @@ function ColumnBox(props: Props) {
                 py-2
                 "
         >
-          <DeleteIcon />
+          <EditIcon />
         </button>
       </div>
       <div className="flex flex-grow">Content</div>
