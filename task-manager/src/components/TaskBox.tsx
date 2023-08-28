@@ -52,7 +52,6 @@ function TaskBox({ task, deleteTask, editTask }: Props) {
         items-center 
         flex 
         text-left 
-        
         rounded-xl 
         border-2
         border-darkGreen
