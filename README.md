@@ -4,13 +4,13 @@ Task Manager is a web application developed using Vite and built upon React with
 
 ## Features
 
-- Stylish Platform Layout
-- Create lists for task organization
-- Editable list Labels
-- Add tasks to lists
-- Task Deletion
-- Task Editing
-- Drag-and-drop tasks between lists
+- [x]Stylish Platform Layout
+- [x]Create lists for task organization
+- [x]Editable list Labels
+- [x]Add tasks to lists
+- [x]Task Deletion
+- [x]Task Editing
+- [x]Drag-and-drop tasks between lists
 
 ### Stack
 
@@ -35,6 +35,7 @@ Task Manager is a web application developed using Vite and built upon React with
 ## Getting Started
 
 Note: Before getting started, ensure that you have Node.js installed on your machine. React is built on top of Node.js, so if you don't have it already, you can download it from https://nodejs.org/. Choose the "LTS" (Long-Term Support) version for greater stability.
+In addition to this, it's beneficial to have a code editor such as VSCode to work with the code.
 
 To run the project, make sure you have Node.js and npm installed on your system.
 
@@ -55,11 +56,12 @@ To run the project, make sure you have Node.js and npm installed on your system.
 
 ## Usage
 
-Create lists using the "Add List" button.
-
-Add tasks to lists using the "Add Task" button.
-
-Drag and drop tasks between lists to rearrange them.
+- **Create Lists**: Click the "Add List" button to create new lists for task organization.
+- **Add Tasks**: Use the "Add Task" button to add tasks to your created lists.
+- **Delete Tasks**: To delete tasks, navigate to the respective task card and click the delete button.
+- **Edit List Titles**: Edit the titles of your lists by clicking on the edit button associated with each list.
+- **Edit Tasks**: Click on a task to edit its details.
+- **Move Tasks Between Lists**: To rearrange tasks, simply hold and drag a task from one list to another.
 
 ## Acknowledgements
 
