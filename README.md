@@ -56,7 +56,9 @@ To run the project, make sure you have Node.js and npm installed on your system.
 ## Usage
 
 Create lists using the "Add List" button.
+
 Add tasks to lists using the "Add Task" button.
+
 Drag and drop tasks between lists to rearrange them.
 
 ## Acknowledgements
