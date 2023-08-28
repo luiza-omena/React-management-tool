@@ -53,7 +53,7 @@ function ColumnBox({
       bg-columnBackgroundColor
       opacity-40
       border-2
-      w-[18.2vw]
+      w-[80vw] lg:w-[18.2vw]
       h-[500px]
       max-h-[500px]
       rounded-md
@@ -70,7 +70,7 @@ function ColumnBox({
       style={style}
       className="
     bg-blueWhite
-    w-[18.2vw]
+    w-[80vw] lg:w-[18.2vw]
     h-[500px]
     max-h-[500px]
     rounded-md

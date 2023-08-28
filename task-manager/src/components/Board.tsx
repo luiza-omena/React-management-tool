@@ -43,8 +43,8 @@ function Board() {
           onDragStart={onDragStart}
           onDragOver={onDragOver}
         >
-          <div className="m-auto flex gap-4 flex-col md:flex-row items-center md:items-start">
-            <div className="flex gap-4 flex-col md:flex-row items-center">
+          <div className="m-auto flex gap-4 flex-col lg:flex-row items-center lg:items-start">
+            <div className="flex gap-4 flex-col lg:flex-row items-center">
               {columns.map((col) => (
                 <ColumnBox
                   column={col}
@@ -66,7 +66,7 @@ function Board() {
                 }}
                 className="
                     h-[60px]
-                    w-[18.2vw]
+                    w-[80vw] lg:w-[18.2vw]
                     cursor-pointer
                     rounded-lg
                     bg-blueWhite
