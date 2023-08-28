@@ -1,7 +1,7 @@
 import PlusIcon from "../icons/PlusIcon";
 import { useState } from "react";
-import { Column, Id, Task } from "../types";
-import ColumnBox from "./ColumnBox";
+import { List, Id, Task } from "../types";
+import ListBox from "./ListBox";
 import logo from "../assets/logoAvant.svg";
 import {
   DndContext,
@@ -17,7 +17,7 @@ import TaskBox from "./TaskBox";
 import { arrayMove } from "@dnd-kit/sortable";
 
 function Board() {
-  const [columns, setColumns] = useState<Column[]>([]);
+  const [lists, setLists] = useState<List[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
@@ -45,23 +45,23 @@ function Board() {
         >
           <div className="m-auto flex gap-4 flex-col lg:flex-row items-center lg:items-start">
             <div className="flex gap-4 flex-col lg:flex-row items-center">
-              {columns.map((col) => (
-                <ColumnBox
-                  column={col}
-                  editColumn={editColumn}
+              {lists.map((li) => (
+                <ListBox
+                  list={li}
+                  editList={editList}
                   createTask={createTask}
                   deleteTask={deleteTask}
                   editTask={editTask}
-                  tasks={tasks.filter((task) => task.columnId === col.id)}
+                  tasks={tasks.filter((task) => task.listId === li.id)}
                 />
               ))}
             </div>
 
-            {columns.length < 5 && (
+            {lists.length < 5 && (
               <button
                 onClick={() => {
-                  if (columns.length < 5) {
-                    createColumn();
+                  if (lists.length < 5) {
+                    createList();
                   }
                 }}
                 className="
@@ -80,7 +80,7 @@ function Board() {
                     "
               >
                 <PlusIcon />
-                Add Column
+                Add List
               </button>
             )}
           </div>
@@ -102,11 +102,11 @@ function Board() {
     </>
   );
 
-  function createTask(columnId: Id) {
+  function createTask(listId: Id) {
     const newTask: Task = {
       id: generateId(),
-      columnId,
-      content: `Task ${tasks.length + 1}`,
+      listId,
+      content: `Card ${tasks.length + 1}`,
     };
 
     setTasks([...tasks, newTask]);
@@ -124,23 +124,23 @@ function Board() {
     });
     setTasks(newTasks);
   }
-  function createColumn() {
-    const addColumn: Column = {
+  function createList() {
+    const addList: List = {
       id: generateId(),
-      title: `Column ${columns.length + 1}`,
+      title: `List ${lists.length + 1}`,
     };
 
-    setColumns([...columns, addColumn]);
+    setLists([...lists, addList]);
   }
-  function editColumn(id: Id, title: string) {
-    const newTitle = columns.map((col) => {
-      if (col.id !== id) {
-        return col;
+  function editList(id: Id, title: string) {
+    const newTitle = lists.map((li) => {
+      if (li.id !== id) {
+        return li;
       }
-      return { ...col, title };
+      return { ...li, title };
     });
 
-    setColumns(newTitle);
+    setLists(newTitle);
   }
 
   function onDragStart(event: DragStartEvent) {
@@ -169,19 +169,19 @@ function Board() {
         const activeIndex = tasks.findIndex((i) => i.id === activeId);
         const overIndex = tasks.findIndex((i) => i.id === overId);
 
-        tasks[activeIndex].columnId = tasks[overIndex].columnId;
+        tasks[activeIndex].listId = tasks[overIndex].listId;
 
         return arrayMove(tasks, activeIndex, overIndex);
       });
     }
 
-    const isOverAColumn = over.data.current?.type === "Column";
+    const isOverAList = over.data.current?.type === "List";
 
-    if (isActiveATask && isOverAColumn) {
+    if (isActiveATask && isOverAList) {
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((t) => t.id === activeId);
 
-        tasks[activeIndex].columnId = overId;
+        tasks[activeIndex].listId = overId;
         return arrayMove(tasks, activeIndex, activeIndex);
       });
     }

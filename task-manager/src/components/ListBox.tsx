@@ -1,24 +1,24 @@
 import { useMemo, useState } from "react";
 import EditIcon from "../icons/EditIcon";
-import { Column, Id, Task } from "../types";
+import { List, Id, Task } from "../types";
 import PlusIcon from "../icons/PlusIcon";
 import TaskBox from "./TaskBox";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 interface Props {
-  column: Column;
-  editColumn: (id: Id, title: string) => void;
+  list: List;
+  editList: (id: Id, title: string) => void;
 
-  createTask: (columnId: Id) => void;
+  createTask: (listId: Id) => void;
   deleteTask: (id: Id) => void;
   editTask: (id: Id, content: string) => void;
   tasks: Task[];
 }
 
-function ColumnBox({
-  column,
-  editColumn,
+function ListBox({
+  list,
+  editList,
   createTask,
   deleteTask,
   editTask,
@@ -31,10 +31,10 @@ function ColumnBox({
   }, [tasks]);
 
   const { setNodeRef, transform, transition, isDragging } = useSortable({
-    id: column.id,
+    id: list.id,
     data: {
-      type: "Column",
-      column,
+      type: "List",
+      list,
     },
     disabled: editMode,
   });
@@ -50,7 +50,7 @@ function ColumnBox({
         ref={setNodeRef}
         style={style}
         className="
-      bg-columnBackgroundColor
+      bg-BlueWhite
       opacity-40
       border-2
       w-[80vw] lg:w-[18.2vw]
@@ -113,12 +113,12 @@ function ColumnBox({
           >
             {tasks.length}
           </div>
-          {!editMode && column.title}
+          {!editMode && list.title}
           {editMode && (
             <input
               className="bg-blueWhite focus:border-darkGreen border rounded outline-none px-2"
-              value={column.title}
-              onChange={(e) => editColumn(column.id, e.target.value)}
+              value={list.title}
+              onChange={(e) => editList(list.id, e.target.value)}
               autoFocus
               onBlur={() => {
                 setEditMode(false);
@@ -175,14 +175,14 @@ function ColumnBox({
         hover:bg-darkBlue
         "
         onClick={() => {
-          createTask(column.id);
+          createTask(list.id);
         }}
       >
         <PlusIcon />
-        Add task
+        Add card
       </button>
     </div>
   );
 }
 
-export default ColumnBox;
+export default ListBox;

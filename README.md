@@ -39,22 +39,25 @@ Note: Before getting started, ensure that you have Node.js installed on your mac
 To run the project, make sure you have Node.js and npm installed on your system.
 
 1. Clone this repository:
+
    ```bash
    git clone https://github.com/luiza-omena/React-management-tool.git
    cd task-manager
 
+   ```
+
 2. Install dependencies:
-  npm install
+   npm install
 
 3. Run the development server:
-  npm run dev
+   npm run dev
 4. Open your browser and navigate to http://127.0.0.1:5173/
 
 ## Usage
 
 Create lists using the "Add List" button.
-Add tasks to columns using the "Add Task" button.
-Drag and drop tasks between columns to rearrange them.
+Add tasks to lists using the "Add Task" button.
+Drag and drop tasks between lists to rearrange them.
 
 ## Acknowledgements
 
