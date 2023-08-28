@@ -4,13 +4,13 @@ Task Manager is a web application developed using Vite and built upon React with
 
 ## Features
 
-- [x]Stylish Platform Layout
-- [x]Create lists for task organization
-- [x]Editable list Labels
-- [x]Add tasks to lists
-- [x]Task Deletion
-- [x]Task Editing
-- [x]Drag-and-drop tasks between lists
+- [x] Stylish Platform Layout
+- [x] Create lists for task organization
+- [x] Editable list Labels
+- [x] Add tasks to lists
+- [x] Task Deletion
+- [x] Task Editing
+- [x] Drag-and-drop tasks between lists
 
 ### Stack
 
